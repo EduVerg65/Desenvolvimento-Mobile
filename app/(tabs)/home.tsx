@@ -58,39 +58,41 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F7FA',
+    backgroundColor: '#fbcc05',
   },
   header: {
     padding: 20,
-    backgroundColor: '#FFFFFF',
-    borderBottomWidth: 1,
-    borderBottomColor: '#EAEAEA',
+    backgroundColor: '#ffffff',
+    borderBottomWidth: 5,
+    borderBottomColor: '#1350a0',
   },
   headerTitulo: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#1A1A1A',
+    color: '#19AE47',
     marginBottom: 15,
   },
   inputBusca: {
-    backgroundColor: '#F0F2F5',
+    backgroundColor: '#d3d3d3',
+    borderBottomWidth: 5,
+    borderBottomColor: '#19AE47',
     paddingHorizontal: 15,
     paddingVertical: 12,
     borderRadius: 8,
     fontSize: 16,
-    color: '#333',
+    color: '#0f0202',
   },
   listaContainer: {
     padding: 20,
     paddingBottom: 40,
   },
   card: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#ffffff',
     borderRadius: 12,
     marginBottom: 20,
     overflow: 'hidden', // Garante que a imagem não "vaze" pelos cantos arredondados
     elevation: 3, // Sombra no Android
-    shadowColor: '#000', // Sombras no iOS
+    shadowColor: '#000000', // Sombras no iOS
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   dataTexto: {
-    color: '#FF5A5F', // Cor de destaque típica de apps de ingressos
+    color: '#19AE47', // Cor de destaque típica de apps de ingressos
     fontWeight: '700',
     fontSize: 14,
     marginBottom: 5,
@@ -126,16 +128,22 @@ const styles = StyleSheet.create({
     alignItems: 'center', // Centraliza verticalmente
     marginTop: 5,
     borderTopWidth: 1,
-    borderTopColor: '#F0F0F0',
+    borderTopColor: '#000000',
     paddingTop: 15,
   },
   precoTexto: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#333333',
-  },
+    color: '#ffffff',
+    backgroundColor: '#fbcc05',
+    borderRadius: 5,
+    paddingHorizontal: 6, // Garante que o fundo não fique colado na letra
+    paddingVertical: 2,
+    alignSelf: 'flex-start', // Faz o fundo "abraçar" apenas o texto
+    overflow: 'hidden', // Necessário para o arredondamento funcionar no iOS
+},
   botaoComprar: {
-    backgroundColor: '#0066FF',
+    backgroundColor: '#19AE47',
     paddingVertical: 8,
     paddingHorizontal: 20,
     borderRadius: 6,
@@ -144,7 +152,7 @@ const styles = StyleSheet.create({
     gap: 12
   },
   textoBotao: {
-    color: '#FFFFFF',
+    color: '#ffffff',
     fontWeight: 'bold',
     fontSize: 14,
   },
