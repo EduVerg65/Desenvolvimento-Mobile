@@ -14,7 +14,7 @@ export default function ProfileScreen() {
             <View style={styles.card}>
                 <Image 
                     source={{
-                        uri: "https://avatars.githubusercontent.com/u/106830297?v=4"
+                        uri: "https://i.pinimg.com/1200x/10/4c/da/104cda487b721689ea7024c317e426cb.jpg"
                     }}
                     style={styles.profileImage}
                 />
@@ -46,11 +46,11 @@ const styles = StyleSheet.create({
     },
     botaoSair: {
         marginTop: 20,
-        backgroundColor: "#FF5A5F",
+        backgroundColor: "#ff0008",
         paddingVertical: 12,
         paddingHorizontal: 30,
         borderRadius: 25,
-        alignItems: "center"
+        alignItems: "center",
     },
     profileImage: {
         width: 120,
