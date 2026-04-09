@@ -1,6 +1,9 @@
 import { useRouter } from "expo-router";
-import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { COLORS } from "../../theme/colors";
+import { FONTS } from "../../theme/fonts";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function ProfileScreen() {
     const router = useRouter();
@@ -8,28 +11,29 @@ export default function ProfileScreen() {
     function onSairPress() {
         router.replace("/login");
     }
-    
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.card}>
-                <Image 
+                <Image
                     source={{
                         uri: "https://i.pinimg.com/1200x/10/4c/da/104cda487b721689ea7024c317e426cb.jpg"
                     }}
                     style={styles.profileImage}
                 />
 
-                <Text style={styles.textName}>João Grande</Text>
+                <Text style={styles.textName}>LULA</Text>
 
                 <Text style={styles.textBio}>
-                    Eu gosto de react native
+                    Eu gosto de React Native 🇧🇷
                 </Text>
 
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={styles.botaoSair}
                     onPress={onSairPress}
                 >
-                    <Text>Sair</Text>
+                    <FontAwesome name="sign-out" size={16} color="#ffff" />
+                    <Text style={styles.textoBotao}>Sair</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
@@ -39,32 +43,18 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#f0f0f0",
+        backgroundColor: COLORS.background,
         justifyContent: "center",
         alignItems: "center",
-        padding: 20
     },
-    botaoSair: {
-        marginTop: 20,
-        backgroundColor: "#ff0008",
-        paddingVertical: 12,
-        paddingHorizontal: 30,
-        borderRadius: 25,
-        alignItems: "center",
-    },
-    profileImage: {
-        width: 120,
-        height: 120,
-        borderRadius: 60,
-        marginBottom: 10
-    },
+
     card: {
-        backgroundColor: "#FFFFFF",
-        padding: 30,
-        borderRadius: 15,
+        backgroundColor: COLORS.card,
+        padding: 25,
+        borderRadius: 20,
         alignItems: "center",
 
-        //Sombras
+        // sombras (AGORA no lugar certo)
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
@@ -72,18 +62,43 @@ const styles = StyleSheet.create({
         elevation: 5,
 
         width: "100%",
-        maxWidth: 250
+        maxWidth: 280
     },
-    textName: {
-        fontSize: 24,
-        fontWeight: "bold",
-        color: "#333",
+
+    profileImage: {
+        width: 120,
+        height: 120,
+        borderRadius: 60,
         marginBottom: 10
     },
+
+    textName: {
+        ...FONTS.title,
+        color: COLORS.text,
+        marginBottom: 10
+    },
+
     textBio: {
-        fontSize: 16,
+        ...FONTS.text,
         textAlign: "center",
-        color: "#666",
+        color: COLORS.textLight,
         lineHeight: 22
+    },
+
+    botaoSair: {
+        marginTop: 20,
+        backgroundColor: "#D62828",
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 10,
+        flexDirection: "row",   // 👈 importante
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 8                  // 👈 espaço entre ícone e texto
+    },
+
+    textoBotao: {
+        color: "#fff",
+        fontWeight: "bold"
     }
 });

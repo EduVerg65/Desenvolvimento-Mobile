@@ -4,6 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { DADOS_EVENTOS } from '../../mocks/event';
 import { Event } from '../../types/event';
 import { FontAwesome } from '@expo/vector-icons';
+import { COLORS } from "../../theme/colors";
+import { FONTS } from "../../theme/fonts";
 
 type RenderizarEventoProps = {
   item: Event;
@@ -12,12 +14,12 @@ type RenderizarEventoProps = {
 const renderizarEvento = ({ item }: RenderizarEventoProps) => (
   <View style={styles.card}>
     <Image source={{ uri: item.imagem }} style={styles.imagemCapa} />
-    
+
     <View style={styles.infoContainer}>
       <Text style={styles.dataTexto}>{item.data}</Text>
       <Text style={styles.tituloTexto} numberOfLines={2}>{item.titulo}</Text>
       <Text style={styles.localTexto}>{item.local}</Text>
-      
+
       <View style={styles.rodapeCard}>
         <Text style={styles.precoTexto}>{item.preco}</Text>
         <TouchableOpacity style={styles.botaoComprar}>
@@ -35,7 +37,7 @@ export default function HomeScreen() {
       {/* Cabeçalho */}
       <View style={styles.header}>
         <Text style={styles.headerTitulo}>Descubra Eventos</Text>
-        <TextInput 
+        <TextInput
           style={styles.inputBusca}
           placeholder="Buscar eventos, shows, cursos..."
           placeholderTextColor="#999"
@@ -62,40 +64,31 @@ const styles = StyleSheet.create({
   },
   header: {
     padding: 20,
-    backgroundColor: '#ffffff',
-    borderBottomWidth: 5,
-    borderBottomColor: '#1350a0',
+    backgroundColor: COLORS.primary,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   headerTitulo: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#19AE47',
-    marginBottom: 15,
+    ...FONTS.title,
+    color: "#fff",
   },
   inputBusca: {
-    backgroundColor: '#d3d3d3',
-    borderBottomWidth: 5,
-    borderBottomColor: '#19AE47',
+    backgroundColor: "#ffffff",
+    borderRadius: 25,
     paddingHorizontal: 15,
-    paddingVertical: 12,
-    borderRadius: 8,
-    fontSize: 16,
-    color: '#0f0202',
+    paddingVertical: 10,
+    marginTop: 10
   },
   listaContainer: {
     padding: 20,
     paddingBottom: 40,
   },
   card: {
-    backgroundColor: '#ffffff',
-    borderRadius: 12,
+    backgroundColor: COLORS.card,
+    borderRadius: 16,
     marginBottom: 20,
-    overflow: 'hidden', // Garante que a imagem não "vaze" pelos cantos arredondados
-    elevation: 3, // Sombra no Android
-    shadowColor: '#000000', // Sombras no iOS
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    overflow: "hidden",
+    elevation: 3,
   },
   imagemCapa: {
     width: '100%',
@@ -132,24 +125,21 @@ const styles = StyleSheet.create({
     paddingTop: 15,
   },
   precoTexto: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    backgroundColor: '#fbcc05',
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "#fff",
+    backgroundColor: COLORS.secondary,
+    paddingHorizontal: 8,
     borderRadius: 5,
-    paddingHorizontal: 6, // Garante que o fundo não fique colado na letra
-    paddingVertical: 2,
-    alignSelf: 'flex-start', // Faz o fundo "abraçar" apenas o texto
-    overflow: 'hidden', // Necessário para o arredondamento funcionar no iOS
-},
+  },
   botaoComprar: {
-    backgroundColor: '#19AE47',
-    paddingVertical: 8,
-    paddingHorizontal: 20,
-    borderRadius: 6,
-    flexDirection: "row-reverse",
-    alignContent: "center",
-    gap: 12
+    backgroundColor: COLORS.primary,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8
   },
   textoBotao: {
     color: '#ffffff',
