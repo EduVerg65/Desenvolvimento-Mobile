@@ -6,13 +6,17 @@ import { Event } from '../../types/event';
 import { FontAwesome } from '@expo/vector-icons';
 import { COLORS } from "../../theme/colors";
 import { FONTS } from "../../theme/fonts";
+import { useRouter } from "expo-router";
 
 type RenderizarEventoProps = {
   item: Event;
 }
 
-const renderizarEvento = ({ item }: RenderizarEventoProps) => (
-  <View style={styles.card}>
+const renderizarEvento = (router: any) => ({ item }: RenderizarEventoProps) => (
+  <TouchableOpacity
+    style={styles.card}
+    onPress={() => router.push(`/evento/${item.id}`)}
+  >
     <Image source={{ uri: item.imagem }} style={styles.imagemCapa} />
 
     <View style={styles.infoContainer}>
@@ -28,10 +32,11 @@ const renderizarEvento = ({ item }: RenderizarEventoProps) => (
         </TouchableOpacity>
       </View>
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
 export default function HomeScreen() {
+  const router = useRouter();
   return (
     <SafeAreaView style={styles.container}>
       {/* Cabeçalho */}
@@ -39,18 +44,18 @@ export default function HomeScreen() {
         <Text style={styles.headerTitulo}>Descubra Eventos</Text>
         <TextInput
           style={styles.inputBusca}
-          placeholder="Buscar eventos, shows, cursos..."
+          placeholder="Buscar eventos, shows, jogos..."
           placeholderTextColor="#999"
         />
       </View>
 
       {/* Lista de Eventos */}
       <FlatList
-        data={DADOS_EVENTOS} 
-        keyExtractor={(item) => item.id} 
-        renderItem={renderizarEvento} 
-        contentContainerStyle={styles.listaContainer} 
-        showsVerticalScrollIndicator={false} 
+        data={DADOS_EVENTOS}
+        keyExtractor={(item) => item.id}
+        renderItem={renderizarEvento(router)}
+        contentContainerStyle={styles.listaContainer}
+        showsVerticalScrollIndicator={false}
       />
 
     </SafeAreaView>
