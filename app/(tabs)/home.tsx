@@ -46,11 +46,11 @@ export default function HomeScreen() {
 
       {/* Lista de Eventos */}
       <FlatList
-        data={DADOS_EVENTOS} // O array de dados
-        keyExtractor={(item) => item.id} // Como o React identifica cada item unicamente
-        renderItem={renderizarEvento} // O componente que será desenhado para cada item
-        contentContainerStyle={styles.listaContainer} // Estilo do container da lista
-        showsVerticalScrollIndicator={false} // Esconde a barra de rolagem nativa
+        data={DADOS_EVENTOS} 
+        keyExtractor={(item) => item.id} 
+        renderItem={renderizarEvento} 
+        contentContainerStyle={styles.listaContainer} 
+        showsVerticalScrollIndicator={false} 
       />
 
     </SafeAreaView>
@@ -65,12 +65,17 @@ const styles = StyleSheet.create({
   header: {
     padding: 20,
     backgroundColor: COLORS.primary,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 25,
+    borderBottomRightRadius: 25,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    elevation: 5,
   },
   headerTitulo: {
     ...FONTS.title,
-    color: "#fff",
+    color: COLORS.secondary,
+    letterSpacing: 1,
   },
   inputBusca: {
     backgroundColor: "#ffffff",
@@ -85,29 +90,34 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: COLORS.card,
-    borderRadius: 16,
+    borderRadius: 18,
     marginBottom: 20,
     overflow: "hidden",
-    elevation: 3,
+    borderLeftWidth: 6,
+    borderLeftColor: COLORS.primary,
+    shadowColor: "#000",
+    shadowOpacity: 0.15,
+    shadowRadius: 10,
+    elevation: 5,
   },
   imagemCapa: {
-    width: '100%',
-    height: 160,
+    width: "100%",
+    height: 180,
   },
   infoContainer: {
     padding: 15,
   },
   dataTexto: {
-    color: '#19AE47', // Cor de destaque típica de apps de ingressos
-    fontWeight: '700',
-    fontSize: 14,
-    marginBottom: 5,
-    textTransform: 'uppercase',
+    color: COLORS.primary,
+    fontWeight: "800",
+    fontSize: 13,
+    textTransform: "uppercase",
+    letterSpacing: 1,
   },
   tituloTexto: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#222222',
+    fontWeight: "bold",
+    color: COLORS.accent,
     marginBottom: 8,
   },
   localTexto: {
@@ -127,19 +137,23 @@ const styles = StyleSheet.create({
   precoTexto: {
     fontSize: 14,
     fontWeight: "bold",
-    color: "#fff",
-    backgroundColor: COLORS.secondary,
-    paddingHorizontal: 8,
-    borderRadius: 5,
+    color: COLORS.secondary,
+    backgroundColor: COLORS.accent,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 6,
   },
   botaoComprar: {
     backgroundColor: COLORS.primary,
     paddingVertical: 10,
     paddingHorizontal: 16,
-    borderRadius: 8,
+    borderRadius: 10,
     flexDirection: "row",
     alignItems: "center",
-    gap: 8
+    gap: 8,
+    shadowColor: COLORS.primary,
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
   },
   textoBotao: {
     color: '#ffffff',

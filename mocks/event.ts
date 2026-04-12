@@ -11,19 +11,26 @@ export const DADOS_EVENTOS: Event[] = [
   },
   {
     id: '2',
-    titulo: 'Maior do mundo',
-    data: 'Qua, 25 Mar • 19:00',
-    local:  'Rio de Janeiro',
-    preco: 'Gratuito para aluno unialfa',
-    imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2FV7XiAxBOT0_Ixs2MIWNWz2hpNQjP74YNQ&s',
+    titulo: 'Brasil x Argentina - Clássico da Copa',
+    data: 'Sáb, 14 Jun • 16:00',
+    local: 'Estádio do Maracanã - Rio de Janeiro, RJ',
+    preco: 'R$ 180,00',
+    imagem: 'https://images.pexels.com/photos/274422/pexels-photo-274422.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
   {
     id: '3',
-    titulo: 'Brasil de saidinha',
-    data: 'Sex, 10 Abr • 19:00',
-    local: 'Auditório Principal - Campus',
+    titulo: 'Estreia do Brasil na Copa do Mundo',
+    data: 'Qua, 18 Jun • 19:00',
+    local: 'Vila Belmiro - Santos, SP',
+    preco: 'R$ 100,00',
+    imagem: 'https://images.unsplash.com/photo-1522778526097-ce0a22ceb253?auto=format&fit=crop&w=800&q=60',
+  },
+  {
+    id: '4',
+    titulo: 'Fan Fest Brasil - Celebração da Copa',
+    data: 'Sex, 22 Jun • 18:00',
+    local: 'Fan Zone Oficial - Brasília, DF',
     preco: 'R$ 50,00',
-    imagem: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs1MrfbQE_eKk4gFC_NlReZI2YlI5vlg5pBw&s',
+    imagem: 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6', // festa futebol torcida
   },
 ];
-

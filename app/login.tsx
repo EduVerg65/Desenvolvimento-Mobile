@@ -78,7 +78,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: COLORS.primary, // verde Brasil
+        backgroundColor: COLORS.secondary, // verde Brasil
     },
     content: {
         flex: 1,
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: COLORS.secondary, // amarelo 🇧🇷
+        backgroundColor: COLORS.primary, // amarelo 🇧🇷
         marginTop: 10
     },
     buttonText: {
