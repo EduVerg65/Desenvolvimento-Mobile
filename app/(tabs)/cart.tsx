@@ -1,13 +1,15 @@
-import { FlatList, Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { FlatList, Image, StyleSheet, Text, View, TouchableOpacity, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
 import { COLORS } from "../../theme/colors";
 import { FONTS } from "../../theme/fonts";
 import { useCart } from "../../context/CartContext";
+import { useTickets } from "../../context/TicketContext";
+import { router } from "expo-router";
 
 export default function CartScreen() {
-    const { carrinho, remover } = useCart();
-
+    const { adicionarBilhetes } = useTickets();
+    const { carrinho, remover, limparCarrinho } = useCart();
     const total = carrinho.reduce((acc, item) => {
         const valor = Number(
             item.preco
@@ -58,7 +60,26 @@ export default function CartScreen() {
             <View style={styles.footer}>
                 <Text style={styles.total}>Total: R$ {total.toFixed(2)}</Text>
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => {
+                        if (carrinho.length === 0) return;
+
+                        adicionarBilhetes(carrinho);
+                        limparCarrinho(); // 🔥 AQUI resolve tudo
+
+                        Alert.alert(
+                            "Compra realizada 🎉",
+                            "Seus ingressos estão disponíveis em 'Bilhetes'",
+                            [
+                                {
+                                    text: "Ver bilhetes",
+                                    onPress: () => router.push("/tickets")
+                                }
+                            ]
+                        );
+                    }}
+                >
                     <Text style={styles.buttonText}>Finalizar Compra</Text>
                 </TouchableOpacity>
             </View>

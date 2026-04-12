@@ -15,6 +15,7 @@ type CartContextType = {
     carrinho: Item[];
     adicionar: (item: Event) => void;
     remover: (cartId: string) => void;
+    limparCarrinho: () => void;
 };
 
 const CartContext = createContext({} as CartContextType);
@@ -39,10 +40,15 @@ export function CartProvider({ children }: any) {
     }
 
     return (
-        <CartContext.Provider value={{ carrinho, adicionar, remover }}>
+        <CartContext.Provider value={{ carrinho, adicionar, remover, limparCarrinho}}>
             {children}
         </CartContext.Provider>
     );
+
+    function limparCarrinho() {
+        setCarrinho([]);
+    }
+
 }
 
 export function useCart() {

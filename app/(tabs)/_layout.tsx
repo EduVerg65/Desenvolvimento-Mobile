@@ -59,6 +59,16 @@ export default function TabLayout() {
                     )
                 }}
             />
+            
+            <Tabs.Screen
+                name="tickets"
+                options={{
+                    title: "Bilhetes",
+                    tabBarIcon: ({ color }) => (
+                        <FontAwesome name="ticket" size={24} color={color} />
+                    )
+                }}
+            />
         </Tabs>
     )
 }
