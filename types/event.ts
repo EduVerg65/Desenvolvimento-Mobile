@@ -5,4 +5,5 @@ export type Event = {
     local: string;
     preco: string;
     imagem: string;
+    descricao: string;
 }

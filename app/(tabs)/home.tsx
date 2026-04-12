@@ -1,42 +1,14 @@
-import { FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-
+import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DADOS_EVENTOS } from '../../mocks/event';
-import { Event } from '../../types/event';
-import { FontAwesome } from '@expo/vector-icons';
 import { COLORS } from "../../theme/colors";
 import { FONTS } from "../../theme/fonts";
 import { useRouter } from "expo-router";
-
-type RenderizarEventoProps = {
-  item: Event;
-}
-
-const renderizarEvento = (router: any) => ({ item }: RenderizarEventoProps) => (
-  <TouchableOpacity
-    style={styles.card}
-    onPress={() => router.push(`/evento/${item.id}`)}
-  >
-    <Image source={{ uri: item.imagem }} style={styles.imagemCapa} />
-
-    <View style={styles.infoContainer}>
-      <Text style={styles.dataTexto}>{item.data}</Text>
-      <Text style={styles.tituloTexto} numberOfLines={2}>{item.titulo}</Text>
-      <Text style={styles.localTexto}>{item.local}</Text>
-
-      <View style={styles.rodapeCard}>
-        <Text style={styles.precoTexto}>{item.preco}</Text>
-        <TouchableOpacity style={styles.botaoComprar}>
-          <FontAwesome name="shopping-cart" size={24} color="white" />
-          <Text style={styles.textoBotao}>Comprar</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  </TouchableOpacity>
-);
+import { EventCard } from "../../components/EventCard";
 
 export default function HomeScreen() {
   const router = useRouter();
+
   return (
     <SafeAreaView style={styles.container}>
       {/* Cabeçalho */}
@@ -53,11 +25,15 @@ export default function HomeScreen() {
       <FlatList
         data={DADOS_EVENTOS}
         keyExtractor={(item) => item.id}
-        renderItem={renderizarEvento(router)}
+        renderItem={({ item }) => (
+          <EventCard
+            item={item}
+            onPress={() => router.push(`/evento/${item.id}`)}
+          />
+        )}
         contentContainerStyle={styles.listaContainer}
         showsVerticalScrollIndicator={false}
       />
-
     </SafeAreaView>
   );
 }

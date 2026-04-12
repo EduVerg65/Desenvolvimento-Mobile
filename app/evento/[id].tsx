@@ -5,12 +5,33 @@ import { Ionicons } from "@expo/vector-icons";
 import { DADOS_EVENTOS } from "../../mocks/event";
 import { COLORS } from "../../theme/colors";
 import { FONTS } from "../../theme/fonts";
+import { useCart } from "../../context/CartContext";
+import { Animated } from "react-native";
+import { useRef } from "react";
+import { Alert } from "react-native";
 
 export default function EventoDetalhe() {
     const { id } = useLocalSearchParams();
     const router = useRouter();
+    const { adicionar } = useCart();
 
-    const evento = DADOS_EVENTOS.find(e => e.id === id);
+    const evento = DADOS_EVENTOS.find(e => String(e.id) === String(id));
+    const scaleAnim = useRef(new Animated.Value(1)).current;
+
+    function animar() {
+        Animated.sequence([
+            Animated.timing(scaleAnim, {
+                toValue: 1.1,
+                duration: 120,
+                useNativeDriver: true,
+            }),
+            Animated.timing(scaleAnim, {
+                toValue: 1,
+                duration: 120,
+                useNativeDriver: true,
+            })
+        ]).start();
+    }
 
     if (!evento) {
         return (
@@ -22,7 +43,7 @@ export default function EventoDetalhe() {
 
     return (
         <SafeAreaView style={styles.container}>
-            
+
             {/* HEADER */}
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => router.back()}>
@@ -35,13 +56,13 @@ export default function EventoDetalhe() {
             </View>
 
             <ScrollView showsVerticalScrollIndicator={false}>
-                
+
                 {/* IMAGEM */}
                 <Image source={{ uri: evento.imagem }} style={styles.image} />
 
                 {/* CONTEÚDO */}
                 <View style={styles.content}>
-                    
+
                     {/* TÍTULO */}
                     <Text style={styles.title}>{evento.titulo}</Text>
 
@@ -55,11 +76,7 @@ export default function EventoDetalhe() {
                     <Text style={styles.sectionTitle}>Sobre o evento</Text>
 
                     <Text style={styles.description}>
-                        Prepare-se para uma experiência única! Este evento reúne fãs apaixonados,
-                        muita energia e a emoção do futebol brasileiro. Viva momentos inesquecíveis
-                        com uma atmosfera vibrante, música, torcida e muita celebração 🇧🇷🔥
-
-                        Garanta já seu ingresso e não fique de fora dessa festa incrível!
+                        {evento.descricao}
                     </Text>
 
                 </View>
@@ -67,9 +84,21 @@ export default function EventoDetalhe() {
 
             {/* BOTÃO FIXO */}
             <View style={styles.footer}>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Garantir Ingresso</Text>
-                </TouchableOpacity>
+                <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={() => {
+                            if (!evento) return;
+
+                            adicionar(evento); // 👈 só isso
+
+                            animar();
+                            Alert.alert("Sucesso", "Ingresso adicionado ao carrinho 🎉");
+                        }}
+                    >
+                        <Text style={styles.buttonText}>Garantir Ingresso</Text>
+                    </TouchableOpacity>
+                </Animated.View>
             </View>
 
         </SafeAreaView>
